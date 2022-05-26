@@ -1,0 +1,6 @@
+chilldren = int(input("Количество детей "))
+aplles = int(input("Количество яблок "))
+have_aplles = aplles // chilldren
+print(have_aplles)
+aplles_box = aplles % chilldren
+print(aplles_box)
