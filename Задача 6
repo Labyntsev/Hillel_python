@@ -1,0 +1,33 @@
+n = int(input("Введите числа "))
+
+min = max = n
+counter: int = 0
+summa = 0
+average = 0
+
+while n != 0:
+   summa += n
+ 
+
+   if n > max:
+
+       max = n
+
+   if n < min:
+
+       min = n
+
+   if n > 0:
+       counter+=1
+       
+
+   n = int(input())
+
+   average = summa / 2
+
+
+
+print(f'max = {max}\nmin = {min}')
+print(f'counter = {counter} ')
+print(f'summa = {summa}')
+print(f'average = {average}')
