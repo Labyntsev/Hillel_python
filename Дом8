@@ -1,0 +1,7 @@
+x = [165, 160, 164, 162, 174, 169, 180]
+p = int(input())
+index = len(x) + 1
+for i in range(len(x)):
+    if p <= x[i]:
+        index = i + 1
+print(index)
