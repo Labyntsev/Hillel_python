@@ -1,0 +1,107 @@
+import random
+
+def instructions():
+    play = input("Хотите поиграть в игру: камень, ножницы, бумага, ящерица, спок.(y/n): ").lower()
+    if play == "y":
+        print("1.Камень")
+        print("2.Бумага")
+        print("3.Ножницы")
+        print("4.Ящерица")
+        print("5.Спок")
+
+    elif play != "n":
+        print("произошла ошибка введите y для да или n для нет:")
+        instructions()
+
+
+
+
+def getPlayerChoice():
+    choice = int(input("Каков ваш выбор пользователя?: "))
+    if choice > 5:
+        print("Неверный номер, попробуйте еще раз....")
+        getPlayerChoice()
+    elif choice < 1:
+        print("Неверный номер, попробуйте еще раз....")
+        getPlayerChoice()
+    elif choice == 1:
+        print("Вы выбрали камень")
+    elif choice == 2:
+        print("Вы выбрали бумагу")
+    elif choice == 3:
+        print("Вы выбрали ножницы")
+    elif choice == 4:
+        print("Вы выбрали ящерицу")
+    elif choice == 5:
+        print("Вы выбрали спок")
+    return choice
+
+def getCPUChoice():
+    choice = random.randint(1,5)
+    if choice == 1:
+        print("ИИ выбрал камень")
+    elif choice == 2:
+        print("ИИ выбрал бумагу")
+    elif choice == 3:
+        print("ИИ выбрал ножницы")
+    elif choice == 4:
+        print("ИИ выбрал ящерицу")
+    elif choice == 5:
+        print("ИИ выбрал спок")
+    return choice
+
+def winner(playerChoice, CPUChoice, playerWins, CPUWins, ties):
+    if playerChoice == 1 and CPUChoice == 3 or CPUChoice == 4:
+        print("Игрок Выиграл!.")
+        playerWins = playerWins.append(1)
+    elif playerChoice == 2 and CPUChoice == 1 or CPUChoice == 5:
+        print("Игрок Выиграл!.")
+        playerWins = playerWins.append(1)
+    elif playerChoice == 3 and CPUChoice == 2 or CPUChoice == 4:
+        print("Игрок Выиграл!.")
+        playerWins = playerWins.append(1)
+    elif playerChoice == 4 and CPUChoice == 2 or CPUChoice == 5:
+        print("Игрок Выиграл!.")
+        playerWins = playerWins.append(1)
+    elif playerChoice == 5 and CPUChoice == 1 or CPUChoice == 3:
+        print("Игрок Выиграл!.")
+        playerWins = playerWins.append(1)
+    elif playerChoice == CPUChoice:
+        print("Ничья")
+        ties = ties.append(1)
+    else:
+        print("ИИ Выиграл!.")
+        CPUWins = CPUWins.append(1)
+    return
+
+def gameTotal(playerWins, CPUWins, ties):
+    playerWins = sum(playerWins)
+    CPUWins = sum(CPUWins)
+    ties = sum(ties)
+    print("Очки Игрока: ", playerWins)
+    print("Очки ИИ: ", CPUWins)
+    print("Ничьих: ",ties)
+
+def main():
+    playerChoice = 0
+    playerWins = []
+    CPUChoice = 0
+    CPUWins = []
+    ties = []
+    finalPlayerWins = 0
+    finalCPUWins = 0
+    finalTies = 0
+    Continue = 'y'
+    instructions()
+    while Continue == 'y':
+        playerChoice = getPlayerChoice()
+        CPUChoice = getCPUChoice()
+        winner(playerChoice,CPUChoice,playerWins, CPUWins, ties)
+        Continue = input("Would you like to play again (y/n):").lower()
+        if Continue == 'n':
+            print("Printing final scores.")
+            break
+    gameTotal(playerWins, CPUWins, ties)
+
+
+main()
